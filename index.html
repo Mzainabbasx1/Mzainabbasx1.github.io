@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Zain Abbas | Developer Portfolio</title>
+
+    <meta name="description" content="Personal portfolio of Zain Abbas - Developer, Learner and Tech Enthusiast">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #0d1117;
+            color: #c9d1d9;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* NAVBAR */
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(13, 17, 23, 0.95);
+            border-bottom: 1px solid #30363d;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 18px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #58a6ff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #c9d1d9;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #58a6ff;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .profile-circle {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 25px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #58a6ff, #8957e5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 45px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 55px;
+            margin-bottom: 15px;
+            color: #f0f6fc;
+        }
+
+        .hero h1 span {
+            color: #58a6ff;
+        }
+
+        .hero h2 {
+            font-size: 24px;
+            font-weight: normal;
+            color: #8b949e;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin: auto;
+            color: #8b949e;
+            font-size: 17px;
+        }
+
+        .buttons {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border-radius: 8px;
+            border: 1px solid #30363d;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+
+        .primary {
+            background: #238636;
+            color: white;
+            border-color: #238636;
+        }
+
+        .primary:hover {
+            background: #2ea043;
+        }
+
+        .secondary {
+            background: transparent;
+            color: #58a6ff;
+        }
+
+        .secondary:hover {
+            background: #161b22;
+        }
+
+        /* SECTIONS */
+
+        section {
+            max-width: 1100px;
+            margin: auto;
+            padding: 90px 25px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            color: #f0f6fc;
+            font-size: 35px;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #8b949e;
+        }
+
+        /* ABOUT */
+
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            color: #58a6ff;
+            font-size: 25px;
+            margin-bottom: 15px;
+        }
+
+        .about-text p {
+            color: #8b949e;
+            margin-bottom: 15px;
+        }
+
+        .about-card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 30px;
+        }
+
+        .about-card div {
+            padding: 12px 0;
+            border-bottom: 1px solid #30363d;
+        }
+
+        .about-card div:last-child {
+            border-bottom: none;
+        }
+
+        .about-card strong {
+            color: #f0f6fc;
+        }
+
+        /* SKILLS */
+
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .skill {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .skill:hover {
+            transform: translateY(-5px);
+            border-color: #58a6ff;
+        }
+
+        .skill h3 {
+            color: #f0f6fc;
+            margin-bottom: 8px;
+        }
+
+        .skill p {
+            color: #8b949e;
+            font-size: 14px;
+        }
+
+        /* PROJECTS */
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .project {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 25px;
+            transition: 0.3s;
+        }
+
+        .project:hover {
+            transform: translateY(-5px);
+            border-color: #58a6ff;
+        }
+
+        .project h3 {
+            color: #58a6ff;
+            margin-bottom: 12px;
+        }
+
+        .project p {
+            color: #8b949e;
+            margin-bottom: 20px;
+        }
+
+        .project a {
+            color: #58a6ff;
+            font-weight: bold;
+        }
+
+        /* CONTACT */
+
+        .contact {
+            text-align: center;
+        }
+
+        .contact p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            color: #8b949e;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            padding: 12px 20px;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            color: #58a6ff;
+            transition: 0.3s;
+        }
+
+        .social-links a:hover {
+            background: #161b22;
+            border-color: #58a6ff;
+        }
+
+        /* FOOTER */
+
+        footer {
+            border-top: 1px solid #30363d;
+            text-align: center;
+            padding: 30px 20px;
+            color: #8b949e;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 800px) {
+
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .hero h2 {
+                font-size: 20px;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+            }
+
+            .skills {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .projects {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                gap: 12px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .skills {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 34px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+
+    <nav>
+        <div class="nav-container">
+
+            <div class="logo">
+                Zain Abbas
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+        </div>
+    </nav>
+
+
+    <!-- HERO SECTION -->
+
+    <header class="hero">
+
+        <div class="hero-content">
+
+            <div class="profile-circle">
+                ZA
+            </div>
+
+            <h1>
+                Hi, I'm <span>Zain Abbas</span>
+            </h1>
+
+            <h2>
+                Developer & Tech Enthusiast
+            </h2>
+
+            <p>
+                I'm passionate about technology, programming and building
+                useful digital experiences. I'm continuously learning,
+                improving my skills and working on new projects.
+            </p>
+
+            <div class="buttons">
+
+                <a href="#projects" class="btn primary">
+                    View My Projects
+                </a>
+
+                <a href="#contact" class="btn secondary">
+                    Contact Me
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ABOUT -->
+
+    <section id="about">
+
+        <div class="section-title">
+
+            <h2>About Me</h2>
+
+            <p>
+                A little about who I am
+            </p>
+
+        </div>
+
+        <div class="about">
+
+            <div class="about-text">
+
+                <h3>Always Learning, Always Improving</h3>
+
+                <p>
+                    Hello! I'm Zain Abbas. I enjoy learning new technologies,
+                    developing projects and solving problems through code.
+                </p>
+
+                <p>
+                    My goal is to continuously improve my technical skills
+                    and build projects that are useful, simple and impactful.
+                </p>
+
+                <p>
+                    I'm currently focused on growing as a developer and
+                    gaining practical experience through real-world projects.
+                </p>
+
+            </div>
+
+
+            <div class="about-card">
+
+                <div>
+                    <strong>Location:</strong>
+                    Pakistan
+                </div>
+
+                <div>
+                    <strong>Focus:</strong>
+                    Web Development
+                </div>
+
+                <div>
+                    <strong>Learning:</strong>
+                    Programming & Technology
+                </div>
+
+                <div>
+                    <strong>Goal:</strong>
+                    Become a Better Developer
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SKILLS -->
+
+    <section id="skills">
+
+        <div class="section-title">
+
+            <h2>My Skills</h2>
+
+            <p>
+                Technologies and areas I'm working with
+            </p>
+
+        </div>
+
+        <div class="skills">
+
+            <div class="skill">
+                <h3>HTML</h3>
+                <p>Building structured and accessible websites.</p>
+            </div>
+
+            <div class="skill">
+                <h3>CSS</h3>
+                <p>Creating responsive and modern interfaces.</p>
+            </div>
+
+            <div class="skill">
+                <h3>JavaScript</h3>
+                <p>Adding functionality and interaction to websites.</p>
+            </div>
+
+            <div class="skill">
+                <h3>Git & GitHub</h3>
+                <p>Version control and project management.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PROJECTS -->
+
+    <section id="projects">
+
+        <div class="section-title">
+
+            <h2>My Projects</h2>
+
+            <p>
+                Some of my work and experiments
+            </p>
+
+        </div>
+
+        <div class="projects">
+
+            <div class="project">
+
+                <h3>Project One</h3>
+
+                <p>
+                    A web project built using HTML and CSS.
+                    Replace this description with information
+                    about your actual project.
+                </p>
+
+                <a href="#">
+                    View Project →
+                </a>
+
+            </div>
+
+
+            <div class="project">
+
+                <h3>Project Two</h3>
+
+                <p>
+                    Another project where I practiced programming,
+                    web development and problem solving.
+                </p>
+
+                <a href="#">
+                    View Project →
+                </a>
+
+            </div>
+
+
+            <div class="project">
+
+                <h3>Project Three</h3>
+
+                <p>
+                    A project I'm working on to improve my skills
+                    and gain practical development experience.
+                </p>
+
+                <a href="#">
+                    View Project →
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+
+    <section id="contact">
+
+        <div class="section-title">
+
+            <h2>Let's Connect</h2>
+
+            <p>
+                Feel free to connect with me and check out my work.
+            </p>
+
+        </div>
+
+        <div class="contact">
+
+            <p>
+                I'm always interested in learning, collaborating
+                and working on interesting projects.
+            </p>
+
+            <div class="social-links">
+
+                <a href="https://github.com/Mzainabbasx1" target="_blank">
+                    GitHub
+                </a>
+
+                <a href="#" target="_blank">
+                    LinkedIn
+                </a>
+
+                <a href="mailto:your-email@example.com">
+                    Email
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © 2026 Zain Abbas. Built with HTML & CSS.
+        </p>
+
+    </footer>
+
+</body>
+</html>
