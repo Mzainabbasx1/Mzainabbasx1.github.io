@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muhammad Zain Abbas | Developer & Administrator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b0f14;
+    --surface: #121821;
+    --surface-hi: #171f2a;
+    --border: #232c38;
+    --text: #e9edf1;
+    --text-dim: #8b96a3;
+    --amber: #e8a33d;
+    --violet: #8b7fd6;
+    --teal: #4fc9c0;
+    --amber-dim: #e8a33d1a;
+    --mono: 'JetBrains Mono', monospace;
+    --display: 'Space Grotesk', sans-serif;
+    --body: 'Inter', sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--body);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+  }
+  .container { max-width: 880px; margin: 0 auto; padding: 0 28px; }
+
+  /* Rich animated background: grid + glowing gradient blobs */
+  body::before {
+    content: "";
+    position: fixed; inset: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 64px 64px;
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .blob {
+    position: fixed; border-radius: 50%;
+    filter: blur(90px);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.35;
+    animation: drift 22s ease-in-out infinite;
+  }
+  .blob-1 {
+    width: 480px; height: 480px;
+    background: radial-gradient(circle, var(--amber), transparent 70%);
+    top: -150px; left: -100px;
+    animation-delay: 0s;
+  }
+  .blob-2 {
+    width: 420px; height: 420px;
+    background: radial-gradient(circle, var(--violet), transparent 70%);
+    top: 30%; right: -180px;
+    animation-delay: 6s;
+  }
+  .blob-3 {
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, var(--teal), transparent 70%);
+    bottom: -120px; left: 15%;
+    animation-delay: 12s;
+  }
+  @keyframes drift {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(40px, -30px) scale(1.1); }
+    66% { transform: translate(-30px, 30px) scale(0.95); }
+  }
+
+  /* Nav */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 18px 28px;
+    background: rgba(11,15,20,0.75);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  nav .logo {
+    font-family: var(--mono); font-size: 14px; color: var(--amber);
+    letter-spacing: 0.5px;
+  }
+  nav .logo span { color: var(--text-dim); }
+  nav ul { list-style: none; display: flex; gap: 28px; }
+  nav a {
+    color: var(--text-dim); text-decoration: none; font-size: 13px;
+    font-family: var(--mono); transition: color 0.25s;
+    position: relative;
+  }
+  nav a::after {
+    content: ""; position: absolute; left: 0; bottom: -4px; width: 0; height: 1px;
+    background: var(--amber); transition: width 0.25s ease;
+  }
+  nav a:hover { color: var(--amber); }
+  nav a:hover::after { width: 100%; }
+
+  /* Hero */
+  .hero {
+    position: relative; z-index: 1;
+    padding: 120px 28px 90px;
+    max-width: 880px; margin: 0 auto;
+  }
+  .hero .eyebrow {
+    font-family: var(--mono); font-size: 13px; color: var(--amber);
+    margin-bottom: 20px; display: flex; align-items: center; gap: 8px;
+    opacity: 0; animation: fadeUp 0.7s ease forwards;
+  }
+  .hero .eyebrow::before {
+    content: ""; width: 8px; height: 8px; border-radius: 50%;
+    background: var(--amber); box-shadow: 0 0 8px var(--amber);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.3); }
+  }
+  .hero h1 {
+    font-family: var(--display); font-size: 52px; font-weight: 700;
+    line-height: 1.15; margin-bottom: 24px; letter-spacing: -0.5px;
+    opacity: 0; animation: fadeUp 0.7s ease 0.15s forwards;
+  }
+  .hero h1 .accent {
+    background: linear-gradient(90deg, var(--amber), var(--violet));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    background-size: 200% auto;
+    animation: shine 4s linear infinite;
+  }
+  @keyframes shine {
+    to { background-position: 200% center; }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .terminal {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 28px 0 36px;
+    box-shadow: 0 20px 60px -20px rgba(0,0,0,0.6);
+    opacity: 0; animation: fadeUp 0.7s ease 0.3s forwards;
+  }
+  .terminal-bar {
+    display: flex; align-items: center; gap: 8px;
+    padding: 12px 16px; background: var(--surface-hi);
+    border-bottom: 1px solid var(--border);
+  }
+  .terminal-bar .dot { width: 11px; height: 11px; border-radius: 50%; }
+  .dot.red { background: #f85149; }
+  .dot.yellow { background: #d29922; }
+  .dot.green { background: #3fb950; }
+  .terminal-bar .filename {
+    margin-left: 8px; font-family: var(--mono); font-size: 12px; color: var(--text-dim);
+  }
+  .terminal-body {
+    padding: 22px 24px; font-family: var(--mono); font-size: 14px; line-height: 1.9;
+    color: var(--text-dim); min-height: 168px;
+  }
+  .terminal-body .key { color: #79c0ff; }
+  .terminal-body .str { color: #a5d6a7; }
+  .terminal-body .punct { color: var(--text-dim); }
+  .cursor {
+    display: inline-block; width: 8px; height: 16px; background: var(--amber);
+    animation: blink 1s step-end infinite; vertical-align: middle; margin-left: 2px;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .btn-row {
+    display: flex; gap: 14px; flex-wrap: wrap;
+    opacity: 0; animation: fadeUp 0.7s ease 0.45s forwards;
+  }
+  .btn {
+    padding: 12px 22px; border-radius: 6px; text-decoration: none;
+    font-size: 14px; font-weight: 500; font-family: var(--body); transition: 0.25s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-primary { background: var(--amber); color: #0b0f14; }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 24px -6px var(--amber-dim); }
+  .btn-secondary { border: 1px solid var(--border); color: var(--text); }
+  .btn-secondary:hover { border-color: var(--amber); color: var(--amber); transform: translateY(-3px); }
+
+  /* Sections */
+  section { position: relative; z-index: 1; padding: 70px 28px; border-top: 1px solid var(--border); }
+  .section-head { margin-bottom: 34px; }
+  h2 { font-family: var(--display); font-size: 26px; font-weight: 600; }
+
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* About */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  .about-text p { color: var(--text-dim); margin-bottom: 16px; }
+  .about-facts { display: flex; flex-direction: column; gap: 16px; }
+  .fact {
+    border-left: 2px solid var(--amber); padding-left: 16px;
+    transition: transform 0.25s ease, border-color 0.25s ease;
+  }
+  .fact:hover { transform: translateX(6px); border-color: var(--violet); }
+  .fact .fact-label { font-family: var(--mono); font-size: 11px; color: var(--amber); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .fact .fact-value { font-size: 14px; color: var(--text); }
+
+  @media (max-width: 700px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 36px; }
+  }
+
+  /* Skills */
+  .skill-track { margin-bottom: 32px; }
+  .skill-track h3 {
+    font-family: var(--mono); font-size: 12px; color: var(--text-dim);
+    text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 14px;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+  .skill-tag {
+    padding: 8px 16px; background: var(--surface); border: 1px solid var(--border);
+    border-radius: 20px; font-size: 13px; font-family: var(--mono); color: var(--text);
+    transition: 0.25s;
+  }
+  .skill-tag:hover {
+    border-color: var(--amber); color: var(--amber); transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 16px -6px var(--amber-dim);
+  }
+
+  /* Projects */
+  .project-grid { display: grid; gap: 20px; }
+  .project-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 28px; transition: 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .project-card::before {
+    content: ""; position: absolute; top: 0; left: 0; width: 3px; height: 100%;
+    background: linear-gradient(180deg, var(--amber), var(--violet));
+    transform: scaleY(0); transform-origin: top;
+    transition: transform 0.3s ease;
+  }
+  .project-card:hover::before { transform: scaleY(1); }
+  .project-card:hover { border-color: var(--border); background: var(--surface-hi); transform: translateY(-4px); }
+  .project-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+  .project-card h3 { font-family: var(--display); font-size: 19px; font-weight: 600; }
+  .project-tag { font-family: var(--mono); font-size: 11px; color: var(--amber); background: var(--amber-dim); padding: 3px 10px; border-radius: 10px; }
+  .project-card p { color: var(--text-dim); font-size: 14px; margin-bottom: 16px; }
+  .project-links { display: flex; gap: 18px; }
+  .project-links a { color: var(--amber); text-decoration: none; font-size: 13px; font-family: var(--mono); }
+  .project-links a:hover { text-decoration: underline; }
+
+  /* Experience */
+  .exp-item { display: flex; gap: 24px; margin-bottom: 6px; }
+  .exp-line { display: flex; flex-direction: column; align-items: center; }
+  .exp-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--amber); margin-top: 6px; box-shadow: 0 0 10px var(--amber); }
+  .exp-bar { width: 1px; flex: 1; background: var(--border); margin-top: 6px; }
+  .exp-content { padding-bottom: 32px; }
+  .exp-content .role { font-family: var(--display); font-size: 17px; font-weight: 600; }
+  .exp-content .org { color: var(--amber); font-size: 13px; font-family: var(--mono); margin: 4px 0 10px; }
+  .exp-content ul { color: var(--text-dim); font-size: 14px; padding-left: 18px; }
+  .exp-content li { margin-bottom: 6px; }
+
+  /* Contact */
+  .contact-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+  }
+  .contact-card {
+    display: flex; align-items: center; gap: 14px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 18px 20px; text-decoration: none;
+    color: var(--text); font-size: 14px; transition: 0.25s;
+  }
+  .contact-card:hover { border-color: var(--amber); transform: translateY(-4px) scale(1.02); box-shadow: 0 12px 24px -10px rgba(0,0,0,0.5); }
+  .contact-card .icon {
+    width: 34px; height: 34px; border-radius: 8px; background: var(--amber-dim);
+    display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0;
+    transition: transform 0.25s ease;
+  }
+  .contact-card:hover .icon { transform: rotate(-8deg) scale(1.1); }
+  .contact-card .label { font-family: var(--mono); font-size: 10px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
+  .contact-card .value { font-size: 14px; }
+
+  footer {
+    text-align: center; padding: 36px 24px; color: var(--text-dim); font-size: 13px;
+    border-top: 1px solid var(--border); font-family: var(--mono);
+    position: relative; z-index: 1;
+  }
+</style>
+</head>
+<body>
+
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
+
+<nav>
+  <div class="logo">zain<span>.dev</span></div>
+  <ul>
+    <li><a href="#about">about</a></li>
+    <li><a href="#skills">skills</a></li>
+    <li><a href="#projects">projects</a></li>
+    <li><a href="#experience">experience</a></li>
+    <li><a href="#contact">contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="eyebrow">AVAILABLE FOR INTERNSHIPS</div>
+  <h1>I build software<br>and I balance <span class="accent">the books.</span></h1>
+
+  <div class="terminal">
+    <div class="terminal-bar">
+      <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+      <span class="filename">profile.json</span>
+    </div>
+    <div class="terminal-body" id="typedOutput"></div>
+  </div>
+
+  <div class="btn-row">
+    <a href="#contact" class="btn btn-primary">Get in touch</a>
+    <a href="https://github.com/Mzainabbasx1" class="btn btn-secondary" target="_blank">View GitHub</a>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container reveal">
+    <div class="section-head"><h2>About</h2></div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm a Computer Science student in my 5th semester, building web projects on the side while sharpening my development skills every day.</p>
+        <p>Before this, I spent two years running the books and student registration desk at my college — so I understand structured systems from both the code side and the operations side.</p>
+      </div>
+      <div class="about-facts">
+        <div class="fact"><div class="fact-label">Currently</div><div class="fact-value">5th semester, Computer Science</div></div>
+        <div class="fact"><div class="fact-label">Background</div><div class="fact-value">2 years as Accounts & Registration Officer</div></div>
+        <div class="fact"><div class="fact-label">Focus</div><div class="fact-value">Frontend development & UI design</div></div>
+        <div class="fact"><div class="fact-label">Looking for</div><div class="fact-value">Development or accounts internships</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="container reveal">
+    <div class="section-head"><h2>Skills</h2></div>
+
+    <div class="skill-track">
+      <h3>Development</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">HTML</span>
+        <span class="skill-tag">CSS</span>
+        <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">Git & GitHub</span>
+        <span class="skill-tag">UI/UX Design</span>
+      </div>
+    </div>
+
+    <div class="skill-track">
+      <h3>Administration</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Accounting</span>
+        <span class="skill-tag">Student Registration</span>
+        <span class="skill-tag">Record Management</span>
+        <span class="skill-tag">MS Excel</span>
+        <span class="skill-tag">Documentation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container reveal">
+    <div class="section-head"><h2>Projects</h2></div>
+    <div class="project-grid">
+
+      <div class="project-card">
+        <div class="project-top">
+          <h3>Expense Tracker</h3>
+          <span class="project-tag">JS</span>
+        </div>
+        <p>Tracks income and expenses with category breakdown, live balance calculation, and persistent storage — no backend required.</p>
+        <div class="project-links">
+          <a href="https://mzainabbasx1.github.io/expense-tracker/" target="_blank">Live demo →</a>
+          <a href="https://github.com/Mzainabbasx1/expense-tracker" target="_blank">Source code →</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <h3>Task Manager</h3>
+          <span class="project-tag">JS</span>
+        </div>
+        <p>A to-do app with priority levels, status filtering, and data that persists across sessions.</p>
+        <div class="project-links">
+          <a href="https://mzainabbasx1.github.io/task-manager/" target="_blank">Live demo →</a>
+          <a href="https://github.com/Mzainabbasx1/task-manager" target="_blank">Source code →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="container reveal">
+    <div class="section-head"><h2>Experience</h2></div>
+
+    <div class="exp-item">
+      <div class="exp-line">
+        <div class="exp-dot"></div>
+        <div class="exp-bar"></div>
+      </div>
+      <div class="exp-content">
+        <div class="role">Accounts & Registration Officer</div>
+        <div class="org">Superior College, Pindi Bhattian · 2024 – 2026</div>
+        <ul>
+          <li>Managed accounts, fee records, and financial documentation</li>
+          <li>Handled student registration and record-keeping with high accuracy</li>
+          <li>Built reports using advanced MS Excel functions</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container reveal">
+    <div class="section-head"><h2>Get in touch</h2></div>
+    <div class="contact-grid">
+      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=mzainabbas170@gmail.com" target="_blank" class="contact-card">
+        <span class="icon">✉️</span>
+        <div><div class="label">Email</div><div class="value">mzainabbas170@gmail.com</div></div>
+      </a>
+      <a href="https://www.linkedin.com/in/zain-abbas-a3180128a" target="_blank" class="contact-card">
+        <span class="icon">💼</span>
+        <div><div class="label">LinkedIn</div><div class="value">zain-abbas</div></div>
+      </a>
+      <a href="https://github.com/Mzainabbasx1" target="_blank" class="contact-card">
+        <span class="icon">🐙</span>
+        <div><div class="label">GitHub</div><div class="value">Mzainabbasx1</div></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Muhammad Zain Abbas — built with HTML, CSS & JS</footer>
+
+<script>
+  // Typing effect in terminal
+  const lines = [
+    { key: 'name', value: 'Muhammad Zain Abbas' },
+    { key: 'role', value: 'CS Student & Web Developer' },
+    { key: 'background', value: 'Accounts & Registration Officer' },
+    { key: 'status', value: 'Open to internships' }
+  ];
+  const output = document.getElementById('typedOutput');
+  let html = '<span class="punct">{</span><br>';
+  let lineIndex = 0, charIndex = 0;
+
+  function typeNext() {
+    if (lineIndex >= lines.length) {
+      output.innerHTML = buildFinal();
+      return;
+    }
+    const line = lines[lineIndex];
+    const prefix = `&nbsp;&nbsp;<span class="key">"${line.key}"</span><span class="punct">: "</span>`;
+    const partial = line.value.slice(0, charIndex);
+    const suffix = charIndex >= line.value.length ? '<span class="punct">"</span><span class="punct">,</span><br>' : '<span class="cursor"></span>';
+    output.innerHTML = html + prefix + `<span class="str">${partial}</span>` + suffix + '<span class="punct">}</span>';
+
+    if (charIndex < line.value.length) {
+      charIndex++;
+      setTimeout(typeNext, 28);
+    } else {
+      html += prefix + `<span class="str">${line.value}</span><span class="punct">"</span><span class="punct">,</span><br>`;
+      lineIndex++;
+      charIndex = 0;
+      setTimeout(typeNext, 200);
+    }
+  }
+
+  function buildFinal() {
+    return html + '<span class="punct">}</span>';
+  }
+
+  typeNext();
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
